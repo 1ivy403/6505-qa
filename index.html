@@ -3,17 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Q&A Cheat Sheet — Canada Carbon Pricing</title>
+<title>Q&A Cheat Sheet — Canada Carbon Pricing（中英对照）</title>
 <style>
   :root { --blue: #1e3a8a; --red: #dc2626; --orange: #ea580c; --green: #16a34a; --bg: #f8fafc; --card: #fff; --border: #e2e8f0; --muted: #64748b; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--bg); color: #1e293b; line-height: 1.7; }
 
-  header { background: var(--blue); color: #fff; padding: 28px 20px 22px; text-align: center; position: sticky; top: 0; z-index: 100; }
-  header h1 { font-size: 20px; font-weight: 700; }
+  header { background: var(--blue); color: #fff; padding: 22px 16px 18px; text-align: center; position: sticky; top: 0; z-index: 100; }
+  header h1 { font-size: 19px; font-weight: 700; }
   header p { font-size: 12px; color: #93c5fd; margin-top: 4px; }
 
-  .search-bar { padding: 12px 16px; position: sticky; top: 78px; z-index: 99; background: var(--bg); }
+  .lang-bar { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+  .lang-bar button { padding: 6px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,.45); background: rgba(255,255,255,.12); color: #fff; font-size: 12px; cursor: pointer; }
+  .lang-bar button:hover { background: rgba(255,255,255,.22); }
+  .lang-bar button.active { background: #fff; color: var(--blue); border-color: #fff; font-weight: 700; }
+
+  .search-bar { padding: 12px 16px; position: sticky; top: 132px; z-index: 99; background: var(--bg); }
+  @media (max-width: 520px) { .search-bar { top: 150px; } }
   .search-bar input { width: 100%; max-width: 720px; display: block; margin: 0 auto; padding: 10px 16px; border: 2px solid var(--blue); border-radius: 10px; font-size: 15px; outline: none; }
   .search-bar input:focus { box-shadow: 0 0 0 3px rgba(30,58,138,.15); }
 
@@ -21,7 +27,7 @@
   .tag-btn { padding: 4px 12px; border: 1px solid var(--border); border-radius: 20px; background: var(--card); font-size: 12px; cursor: pointer; transition: .15s; }
   .tag-btn:hover, .tag-btn.active { background: var(--blue); color: #fff; border-color: var(--blue); }
 
-  .container { max-width: 760px; margin: 0 auto; padding: 12px 16px 80px; }
+  .container { max-width: 800px; margin: 0 auto; padding: 12px 16px 80px; }
 
   .qa-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 16px; overflow: hidden; transition: .2s; }
   .qa-card.hidden { display: none; }
@@ -38,6 +44,14 @@
   .q-arrow { flex-shrink: 0; font-size: 18px; color: var(--muted); transition: .2s; }
   .qa-card.open .q-arrow { transform: rotate(90deg); }
 
+  .lang-en, .lang-zh { display: block; }
+  .lang-label { font-size: 10px; font-weight: 800; color: var(--muted); letter-spacing: .5px; margin-bottom: 2px; }
+  body[data-lang="both"] .lang-zh { margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--border); font-weight: 600; color: #334155; }
+  body[data-lang="both"] .lang-en { font-weight: 600; }
+  body[data-lang="en"] .lang-zh { display: none !important; }
+  body[data-lang="zh"] .lang-en { display: none !important; }
+  body[data-lang="zh"] .q-text .lang-zh, body[data-lang="zh"] .point-text .lang-zh { font-weight: 600; }
+
   .qa-tags { padding: 0 20px 0 60px; display: flex; gap: 6px; flex-wrap: wrap; }
   .qa-tag { font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 600; }
   .qa-tag.kw { background: #dbeafe; color: var(--blue); }
@@ -46,29 +60,40 @@
   .qa-a { display: none; padding: 0 20px 20px 60px; }
   .qa-card.open .qa-a { display: block; }
   .qa-a p { margin-bottom: 10px; font-size: 14px; }
-  .qa-a .point { display: flex; gap: 8px; margin-bottom: 8px; }
+  .qa-a .point { display: flex; gap: 8px; margin-bottom: 12px; }
   .point-num { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: #e0e7ff; color: var(--blue); font-weight: 700; font-size: 12px; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
   .point-text { flex: 1; font-size: 14px; }
+  body[data-lang="both"] .point-text .lang-zh { margin-top: 6px; padding-top: 6px; border-top: 1px dashed #e2e8f0; font-size: 13.5px; color: #475569; }
   .highlight { background: #fef08a; padding: 1px 4px; border-radius: 2px; font-weight: 600; }
   .data { color: var(--red); font-weight: 700; }
   .ref { color: var(--muted); font-size: 12px; font-style: italic; }
   .killer { display: block; margin-top: 10px; padding: 10px 14px; background: #f0fdf4; border-left: 3px solid var(--green); border-radius: 0 8px 8px 0; font-size: 13px; color: #166534; }
   .killer strong { color: var(--green); }
+  body[data-lang="both"] .killer .lang-zh { margin-top: 8px; padding-top: 8px; border-top: 1px dashed #bbf7d0; display: block; color: #15803d; }
 
-  .section-label { font-size: 13px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin: 28px 0 12px; padding-left: 4px; }
+  .section-label { font-size: 13px; font-weight: 700; color: var(--muted); margin: 28px 0 12px; padding-left: 4px; }
+  .section-label .sec-en { text-transform: uppercase; letter-spacing: 1px; display: block; font-size: 11px; }
+  .section-label .sec-zh { display: block; color: #475569; margin-top: 2px; }
+  body[data-lang="en"] .section-label .sec-zh { display: none; }
+  body[data-lang="zh"] .section-label .sec-en { display: none; }
 
   @media (max-width: 500px) { .qa-a { padding-left: 20px; } .qa-tags { padding-left: 20px; } }
 </style>
 </head>
-<body>
+<body data-lang="both">
 
 <header>
-  <h1>Q&A Cheat Sheet</h1>
-  <p>Canada Carbon Pricing — 6505 Group Presentation · 老师可能提问 + 快速应答</p>
+  <h1>Q&A Cheat Sheet · 答辩速查（中英对照）</h1>
+  <p>Canada Carbon Pricing — 6505 · Teacher Q&amp;A + quick responses</p>
+  <div class="lang-bar" role="group" aria-label="显示语言">
+    <button type="button" class="active" data-lang="both" onclick="setLang('both',this)">中英对照</button>
+    <button type="button" data-lang="en" onclick="setLang('en',this)">English only</button>
+    <button type="button" data-lang="zh" onclick="setLang('zh',this)">中文 only</button>
+  </div>
 </header>
 
 <div class="search-bar">
-  <input id="searchInput" type="search" placeholder="输入关键词快速定位（如：shadow price / rebate / ETS / province ...）" oninput="filterCards()" />
+  <input id="searchInput" type="search" placeholder="搜索关键词（中或英，如 shadow price / 影子价格 / rebate / 退税…）" oninput="filterCards()" />
 </div>
 
 <div class="tag-bar">
@@ -81,14 +106,15 @@
 
 <div class="container" id="qaList">
 
-<!-- ============ SECTION: 概念与机制 ============ -->
-<div class="section-label">概念与机制类</div>
+<div class="section-label"><span class="sec-en">Concepts &amp; mechanisms</span><span class="sec-zh">概念与机制类</span></div>
 
-<!-- Q1 -->
-<div class="qa-card" data-tags="concept" data-keywords="shadow price internal carbon pricing ICP difference 影子价格 内部碳定价 区别">
+<div class="qa-card" data-tags="concept" data-keywords="shadow price internal carbon pricing ICP difference 影子价格 内部碳定价 区别 预测 搁浅">
   <div class="qa-q" onclick="toggleCard(this)">
     <div class="q-icon concept">C</div>
-    <div class="q-text">What exactly is "shadow price"? How is it different from the actual carbon tax?</div>
+    <div class="q-text">
+      <span class="lang-en">What exactly is "shadow price"? How is it different from the actual carbon tax?</span>
+      <span class="lang-zh">「影子价格」到底是什么？和实际缴纳的碳税有什么不同？</span>
+    </div>
     <div class="q-arrow">›</div>
   </div>
   <div class="qa-tags">
@@ -97,39 +123,64 @@
     <span class="qa-tag src">Desjardins 2024</span>
   </div>
   <div class="qa-a">
-    <div class="point"><div class="point-num">1</div><div class="point-text">Shadow price = company's <span class="highlight">predicted future carbon cost</span>, not today's bill. It includes compliance spending, quota purchase, and internal pricing.</div></div>
-    <div class="point"><div class="point-num">2</div><div class="point-text">Carbon tax = <span class="highlight">external, mandatory, government-set</span>. Shadow price = <span class="highlight">internal, voluntary, forward-looking</span>.</div></div>
-    <div class="point"><div class="point-num">3</div><div class="point-text">The key concern: will long-term cash flow survive policy tightening? Will assets become <span class="highlight">stranded</span>?</div></div>
-    <span class="killer"><strong>Key sentence:</strong> "Shadow price is not what you pay today — it's what you expect to pay tomorrow, and that expectation shapes where capital goes."</span>
+    <div class="point"><div class="point-num">1</div><div class="point-text">
+      <span class="lang-en">Shadow price = company's <span class="highlight">predicted future carbon cost</span>, not today's bill. It includes compliance spending, quota purchase, and internal pricing.</span>
+      <span class="lang-zh">影子价格 = 企业对<strong class="highlight">未来碳成本</strong>的预期，不是今天账单；含合规支出、配额购买与内部定价。</span>
+    </div></div>
+    <div class="point"><div class="point-num">2</div><div class="point-text">
+      <span class="lang-en">Carbon tax = <span class="highlight">external, mandatory, government-set</span>. Shadow price = <span class="highlight">internal, voluntary, forward-looking</span>.</span>
+      <span class="lang-zh">碳税 = <span class="highlight">外部、强制、政府定价</span>；影子价格 = <span class="highlight">内部、自愿、面向未来</span>。</span>
+    </div></div>
+    <div class="point"><div class="point-num">3</div><div class="point-text">
+      <span class="lang-en">The key concern: will long-term cash flow survive policy tightening? Will assets become <span class="highlight">stranded</span>?</span>
+      <span class="lang-zh">核心关切：政策收紧后长期现金流能否扛住？资产会否<span class="highlight">搁浅</span>？</span>
+    </div></div>
+    <span class="killer"><span class="lang-en"><strong>Key sentence:</strong> "Shadow price is not what you pay today — it's what you expect to pay tomorrow, and that expectation shapes where capital goes."</span><span class="lang-zh"><strong>金句（中文）：</strong>「影子价格不是今天付多少，而是你预期明天付多少——预期决定资本往哪流。」</span></span>
   </div>
 </div>
 
-<!-- Q2 -->
-<div class="qa-card" data-tags="concept" data-keywords="external internal carbon pricing ETS carbon tax 外部 内部 碳定价 碳税 碳交易">
+<div class="qa-card" data-tags="concept" data-keywords="external internal carbon pricing ETS carbon tax 外部 内部 碳定价 资本 再分配">
   <div class="qa-q" onclick="toggleCard(this)">
     <div class="q-icon concept">C</div>
-    <div class="q-text">Can you explain the relationship between external carbon pricing and internal carbon pricing?</div>
+    <div class="q-text">
+      <span class="lang-en">Can you explain the relationship between external carbon pricing and internal carbon pricing?</span>
+      <span class="lang-zh">外部碳定价与内部碳定价之间是什么关系？</span>
+    </div>
     <div class="q-arrow">›</div>
   </div>
   <div class="qa-tags">
     <span class="qa-tag kw">External vs Internal</span>
     <span class="qa-tag kw">Capital Redistribution</span>
-    <span class="qa-tag src">CDP & World Bank 2025</span>
+    <span class="qa-tag src">CDP &amp; World Bank 2025</span>
   </div>
   <div class="qa-a">
-    <div class="point"><div class="point-num">1</div><div class="point-text"><span class="highlight">External</span>: government sets the price (carbon tax or ETS) → mandatory for all market participants.</div></div>
-    <div class="point"><div class="point-num">2</div><div class="point-text"><span class="highlight">Internal (ICP)</span>: company voluntarily sets a virtual carbon price → writes it into project approval → guides internal capital allocation.</div></div>
-    <div class="point"><div class="point-num">3</div><div class="point-text">The logic: external price creates cost signal → company responds with ICP → funds flow from high-carbon to low-carbon projects.</div></div>
-    <div class="point"><div class="point-num">4</div><div class="point-text">Over <span class="data">1,700 institutions</span> now use ICP globally. BP and Shell both set $40/ton, targeting $100/ton by 2030.</div></div>
-    <span class="killer"><strong>Key sentence:</strong> "External pricing forces the question; internal pricing decides the answer — where exactly does the money go inside the company."</span>
+    <div class="point"><div class="point-num">1</div><div class="point-text">
+      <span class="lang-en"><span class="highlight">External</span>: government sets the price (carbon tax or ETS) → mandatory for all market participants.</span>
+      <span class="lang-zh"><span class="highlight">外部</span>：政府定价（碳税或碳市场）→ 对市场主体强制适用。</span>
+    </div></div>
+    <div class="point"><div class="point-num">2</div><div class="point-text">
+      <span class="lang-en"><span class="highlight">Internal (ICP)</span>: company voluntarily sets a virtual carbon price → writes it into project approval → guides internal capital allocation.</span>
+      <span class="lang-zh"><span class="highlight">内部（ICP）</span>：企业自设内部碳价 → 写入项目审批 → 引导内部资金配置。</span>
+    </div></div>
+    <div class="point"><div class="point-num">3</div><div class="point-text">
+      <span class="lang-en">The logic: external price creates cost signal → company responds with ICP → funds flow from high-carbon to low-carbon projects.</span>
+      <span class="lang-zh">逻辑：外部价格形成成本信号 → 企业用 ICP 响应 → 资金从高碳项目流向低碳项目。</span>
+    </div></div>
+    <div class="point"><div class="point-num">4</div><div class="point-text">
+      <span class="lang-en">Over <span class="data">1,700 institutions</span> now use ICP globally. BP and Shell both set $40/ton, targeting $100/ton by 2030.</span>
+      <span class="lang-zh">全球已有逾 <span class="data">1700 家</span>机构使用 ICP；BP 与 Shell 均设 40 美元/吨，目标 2030 年约 100 美元/吨。</span>
+    </div></div>
+    <span class="killer"><span class="lang-en"><strong>Key sentence:</strong> "External pricing forces the question; internal pricing decides the answer — where exactly does the money go inside the company."</span><span class="lang-zh"><strong>金句：</strong>「外部定价逼出问题，内部定价决定答案——钱在公司内部到底流向哪里。」</span></span>
   </div>
 </div>
 
-<!-- Q3 -->
-<div class="qa-card" data-tags="concept" data-keywords="carbon credit quality verification greenwashing 碳信用 质量 核查 漂绿">
+<div class="qa-card" data-tags="concept" data-keywords="carbon credit quality verification greenwashing 碳信用 质量 核查 漂绿 OBPS">
   <div class="qa-q" onclick="toggleCard(this)">
     <div class="q-icon concept">C</div>
-    <div class="q-text">How do carbon credits fit into this picture? What about quality concerns?</div>
+    <div class="q-text">
+      <span class="lang-en">How do carbon credits fit into this picture? What about quality concerns?</span>
+      <span class="lang-zh">碳信用在整个框架里起什么作用？质量/「漂绿」风险怎么说？</span>
+    </div>
     <div class="q-arrow">›</div>
   </div>
   <div class="qa-tags">
@@ -138,43 +189,70 @@
     <span class="qa-tag src">CFC 2024 / Kita Earth 2023</span>
   </div>
   <div class="qa-a">
-    <div class="point"><div class="point-num">1</div><div class="point-text">Carbon credits = <span class="highlight">bridge</span> between ICP and external emission reduction projects. When internal cuts aren't enough, companies buy credits to offset residual emissions.</div></div>
-    <div class="point"><div class="point-num">2</div><div class="point-text">Two demand sources in Canada: <span class="highlight">compliance demand</span> (OBPS system) + <span class="highlight">voluntary commitment</span> (net-zero targets).</div></div>
-    <div class="point"><div class="point-num">3</div><div class="point-text">Quality varies widely. Must meet: <span class="highlight">additionality, permanence, third-party verification</span>.</div></div>
-    <div class="point"><div class="point-num">4</div><div class="point-text">As Canada's price hits <span class="data">$80 CAD/ton</span>, companies prefer high-quality credits → carbon credit insurance is emerging.</div></div>
-    <span class="killer"><strong>Key sentence:</strong> "The channel matters as much as the price — if credit quality is poor, the capital never actually reaches real emission reduction."</span>
+    <div class="point"><div class="point-num">1</div><div class="point-text">
+      <span class="lang-en">Carbon credits = <span class="highlight">bridge</span> between ICP and external emission reduction projects. When internal cuts aren't enough, companies buy credits to offset residual emissions.</span>
+      <span class="lang-zh">碳信用是 ICP 与外部减排项目之间的<span class="highlight">桥梁</span>；内部减不下来时，企业购买信用抵消残余排放。</span>
+    </div></div>
+    <div class="point"><div class="point-num">2</div><div class="point-text">
+      <span class="lang-en">Two demand sources in Canada: <span class="highlight">compliance demand</span> (OBPS system) + <span class="highlight">voluntary commitment</span> (net-zero targets).</span>
+      <span class="lang-zh">加拿大两类需求：<span class="highlight">合规需求</span>（如 OBPS）+ <span class="highlight">自愿承诺</span>（净零目标等）。</span>
+    </div></div>
+    <div class="point"><div class="point-num">3</div><div class="point-text">
+      <span class="lang-en">Quality varies widely. Must meet: <span class="highlight">additionality, permanence, third-party verification</span>.</span>
+      <span class="lang-zh">质量参差；需满足<span class="highlight">额外性、持久性、第三方核证</span>等。</span>
+    </div></div>
+    <div class="point"><div class="point-num">4</div><div class="point-text">
+      <span class="lang-en">As Canada's price hits <span class="data">$80 CAD/ton</span>, companies prefer high-quality credits → carbon credit insurance is emerging.</span>
+      <span class="lang-zh">加国碳价升至约 <span class="data">80 加元/吨</span>，企业更偏好高质量信用 → 碳信用保险等工具出现。</span>
+    </div></div>
+    <span class="killer"><span class="lang-en"><strong>Key sentence:</strong> "The channel matters as much as the price — if credit quality is poor, the capital never actually reaches real emission reduction."</span><span class="lang-zh"><strong>金句：</strong>「渠道和价格同样重要——信用质量差，资金就到不了真实减排。」</span></span>
   </div>
 </div>
 
-<!-- ============ SECTION: 质疑与挑战 ============ -->
-<div class="section-label">质疑与挑战类</div>
+<div class="section-label"><span class="sec-en">Challenges &amp; pushback</span><span class="sec-zh">质疑与挑战类</span></div>
 
-<!-- Q4 -->
-<div class="qa-card" data-tags="challenge" data-keywords="political backlash opposition conservative province 政治反弹 反对 省份 保守党">
+<div class="qa-card" data-tags="challenge" data-keywords="political backlash opposition conservative province 政治反弹 反对 省份 保守党 退税">
   <div class="qa-q" onclick="toggleCard(this)">
     <div class="q-icon challenge">!</div>
-    <div class="q-text">If carbon pricing is economically efficient, why is there so much political opposition in Canada?</div>
+    <div class="q-text">
+      <span class="lang-en">If carbon pricing is economically efficient, why is there so much political opposition in Canada?</span>
+      <span class="lang-zh">若碳定价经济上有效率，为何加拿大政治反弹仍这么大？</span>
+    </div>
     <div class="q-arrow">›</div>
   </div>
   <div class="qa-tags">
     <span class="qa-tag kw">Political Backlash</span>
     <span class="qa-tag kw">Provinces</span>
-    <span class="qa-tag src">Harrison & Schwarz 2024</span>
+    <span class="qa-tag src">Harrison &amp; Schwarz 2024</span>
   </div>
   <div class="qa-a">
-    <div class="point"><div class="point-num">1</div><div class="point-text">Carbon price increase + inflation → combined effect makes energy <span class="highlight">visibly more expensive</span> for voters.</div></div>
-    <div class="point"><div class="point-num">2</div><div class="point-text">Although rebate exists, people <span class="highlight">feel the cost immediately but receive the rebate later</span> — timing mismatch.</div></div>
-    <div class="point"><div class="point-num">3</div><div class="point-text">Provincial economic structures differ hugely — resource-dependent provinces (e.g. Alberta) face <span class="highlight">disproportionate burden</span>.</div></div>
-    <div class="point"><div class="point-num">4</div><div class="point-text">Conservative Party uses it as a political weapon → <span class="highlight">lack of cross-party consensus</span> makes policy vulnerable to election cycles.</div></div>
-    <span class="killer"><strong>Key sentence:</strong> "Economic efficiency doesn't guarantee political durability. If people feel the cost but can't see the benefit, any carbon price becomes a target."</span>
+    <div class="point"><div class="point-num">1</div><div class="point-text">
+      <span class="lang-en">Carbon price increase + inflation → combined effect makes energy <span class="highlight">visibly more expensive</span> for voters.</span>
+      <span class="lang-zh">碳价上涨叠通胀 → 选民<strong class="highlight">直观感到</strong>能源更贵。</span>
+    </div></div>
+    <div class="point"><div class="point-num">2</div><div class="point-text">
+      <span class="lang-en">Although rebate exists, people <span class="highlight">feel the cost immediately but receive the rebate later</span> — timing mismatch.</span>
+      <span class="lang-zh">虽有退税，但民众<span class="highlight">先感到成本、后拿到退税</span>——时间错配。</span>
+    </div></div>
+    <div class="point"><div class="point-num">3</div><div class="point-text">
+      <span class="lang-en">Provincial economic structures differ hugely — resource-dependent provinces (e.g. Alberta) face <span class="highlight">disproportionate burden</span>.</span>
+      <span class="lang-zh">各省经济结构差异大——资源型省（如阿省）承受<span class="highlight">不成比例压力</span>。</span>
+    </div></div>
+    <div class="point"><div class="point-num">4</div><div class="point-text">
+      <span class="lang-en">Conservative Party uses it as a political weapon → <span class="highlight">lack of cross-party consensus</span> makes policy vulnerable to election cycles.</span>
+      <span class="lang-zh">保守党将其政治化 → <span class="highlight">缺乏跨党共识</span>使政策易受选举周期冲击。</span>
+    </div></div>
+    <span class="killer"><span class="lang-en"><strong>Key sentence:</strong> "Economic efficiency doesn't guarantee political durability. If people feel the cost but can't see the benefit, any carbon price becomes a target."</span><span class="lang-zh"><strong>金句：</strong>「经济有效率不等于政治扛得住；若只感到成本、看不到收益，任何碳价都会成靶子。」</span></span>
   </div>
 </div>
 
-<!-- Q5 -->
-<div class="qa-card" data-tags="challenge" data-keywords="CPU uncertainty investment weakened 不确定性 投资削弱 气候政策不确定性">
+<div class="qa-card" data-tags="challenge" data-keywords="CPU uncertainty investment weakened 不确定性 投资削弱 气候政策 矛盾">
   <div class="qa-q" onclick="toggleCard(this)">
     <div class="q-icon challenge">!</div>
-    <div class="q-text">You mentioned policy uncertainty weakens investment. Doesn't that contradict the argument that carbon pricing guides investment?</div>
+    <div class="q-text">
+      <span class="lang-en">You mentioned policy uncertainty weakens investment. Doesn't that contradict the argument that carbon pricing guides investment?</span>
+      <span class="lang-zh">你们说政策不确定性削弱投资，这和「碳定价引导投资」是否矛盾？</span>
+    </div>
     <div class="q-arrow">›</div>
   </div>
   <div class="qa-tags">
@@ -183,19 +261,33 @@
     <span class="qa-tag src">Gavriilidis 2026 / Liu 2026</span>
   </div>
   <div class="qa-a">
-    <div class="point"><div class="point-num">1</div><div class="point-text">No contradiction — it's a <span class="highlight">tension, not a paradox</span>. Carbon pricing aims to raise expectations; uncertainty dampens the response.</div></div>
-    <div class="point"><div class="point-num">2</div><div class="point-text">When policy signals are clear and stable → shadow price anchors expectations → investment follows.</div></div>
-    <div class="point"><div class="point-num">3</div><div class="point-text">When signals are blurred (e.g. 2025 benchmark update) → companies apply <span class="highlight">heavy conservative discounting</span> → investment response weakens.</div></div>
-    <div class="point"><div class="point-num">4</div><div class="point-text">This is exactly why our policy recommendations emphasize <span class="highlight">signal stability and cross-party consensus</span>.</div></div>
-    <span class="killer"><strong>Key sentence:</strong> "Shadow price is the result of two forces — policy pushing expectations up and uncertainty pulling investment response down. The outcome depends on which force wins."</span>
+    <div class="point"><div class="point-num">1</div><div class="point-text">
+      <span class="lang-en">No contradiction — it's a <span class="highlight">tension, not a paradox</span>. Carbon pricing aims to raise expectations; uncertainty dampens the response.</span>
+      <span class="lang-zh">不矛盾——是<span class="highlight">张力而非悖论</span>：碳定价抬高预期，不确定性压低投资反应。</span>
+    </div></div>
+    <div class="point"><div class="point-num">2</div><div class="point-text">
+      <span class="lang-en">When policy signals are clear and stable → shadow price anchors expectations → investment follows.</span>
+      <span class="lang-zh">信号清晰稳定 → 影子价格锚定预期 → 投资跟进。</span>
+    </div></div>
+    <div class="point"><div class="point-num">3</div><div class="point-text">
+      <span class="lang-en">When signals are blurred (e.g. 2025 benchmark update) → companies apply <span class="highlight">heavy conservative discounting</span> → investment response weakens.</span>
+      <span class="lang-zh">信号模糊（如 2025 基准线调整）→ 企业<span class="highlight">大幅保守折现</span> → 投资反应变弱。</span>
+    </div></div>
+    <div class="point"><div class="point-num">4</div><div class="point-text">
+      <span class="lang-en">This is exactly why our policy recommendations emphasize <span class="highlight">signal stability and cross-party consensus</span>.</span>
+      <span class="lang-zh">故政策建议强调<span class="highlight">信号稳定与跨党共识</span>。</span>
+    </div></div>
+    <span class="killer"><span class="lang-en"><strong>Key sentence:</strong> "Shadow price is the result of two forces — policy pushing expectations up and uncertainty pulling investment response down. The outcome depends on which force wins."</span><span class="lang-zh"><strong>金句：</strong>「影子价格是两股力：政策推高预期，不确定性压低投资反应——谁占上风决定结果。」</span></span>
   </div>
 </div>
 
-<!-- Q6 -->
-<div class="qa-card" data-tags="challenge" data-keywords="rebate carbon rebate effective enough 退税 碳退税 足够有效吗 rebate offset">
+<div class="qa-card" data-tags="challenge" data-keywords="rebate carbon rebate effective enough 退税 碳退税 家庭 抵消">
   <div class="qa-q" onclick="toggleCard(this)">
     <div class="q-icon challenge">!</div>
-    <div class="q-text">Is the Canada Carbon Rebate actually effective? Does it really offset the cost for households?</div>
+    <div class="q-text">
+      <span class="lang-en">Is the Canada Carbon Rebate actually effective? Does it really offset the cost for households?</span>
+      <span class="lang-zh">加拿大碳退税真的有效吗？能抵消家庭负担吗？</span>
+    </div>
     <div class="q-arrow">›</div>
   </div>
   <div class="qa-tags">
@@ -203,19 +295,33 @@
     <span class="qa-tag kw">Household Impact</span>
   </div>
   <div class="qa-a">
-    <div class="point"><div class="point-num">1</div><div class="point-text">Official data: rebate can <span class="highlight">offset or even exceed</span> direct carbon costs for most families.</div></div>
-    <div class="point"><div class="point-num">2</div><div class="point-text">But the problem is <span class="highlight">perception vs. reality</span>: people feel the price rise at the pump immediately; the rebate comes quarterly.</div></div>
-    <div class="point"><div class="point-num">3</div><div class="point-text">Low-income and rural households may still face net burden due to <span class="highlight">higher energy dependence</span>.</div></div>
-    <div class="point"><div class="point-num">4</div><div class="point-text">This is why we recommend <span class="highlight">prioritizing disadvantaged groups</span> and making revenue use more transparent.</div></div>
-    <span class="killer"><strong>Key sentence:</strong> "The rebate works on paper, but politics runs on perception. If people can't feel the benefit, the policy loses support."</span>
+    <div class="point"><div class="point-num">1</div><div class="point-text">
+      <span class="lang-en">Official data: rebate can <span class="highlight">offset or even exceed</span> direct carbon costs for most families.</span>
+      <span class="lang-zh">官方数据：对多数家庭退税可<span class="highlight">抵消甚至超过</span>直接碳成本。</span>
+    </div></div>
+    <div class="point"><div class="point-num">2</div><div class="point-text">
+      <span class="lang-en">But the problem is <span class="highlight">perception vs. reality</span>: people feel the price rise at the pump immediately; the rebate comes quarterly.</span>
+      <span class="lang-zh">难点在<span class="highlight">感知与现实</span>：油价上涨立即可感，退税按季到账。</span>
+    </div></div>
+    <div class="point"><div class="point-num">3</div><div class="point-text">
+      <span class="lang-en">Low-income and rural households may still face net burden due to <span class="highlight">higher energy dependence</span>.</span>
+      <span class="lang-zh">低收入与农村家庭因<span class="highlight">能源依赖更高</span>仍可能净受损。</span>
+    </div></div>
+    <div class="point"><div class="point-num">4</div><div class="point-text">
+      <span class="lang-en">This is why we recommend <span class="highlight">prioritizing disadvantaged groups</span> and making revenue use more transparent.</span>
+      <span class="lang-zh">因此建议<span class="highlight">优先保护弱势群体</span>并提高收入用途透明度。</span>
+    </div></div>
+    <span class="killer"><span class="lang-en"><strong>Key sentence:</strong> "The rebate works on paper, but politics runs on perception. If people can't feel the benefit, the policy loses support."</span><span class="lang-zh"><strong>金句：</strong>「纸面上退税有效，政治上靠感知；感受不到收益，支持度就掉。」</span></span>
   </div>
 </div>
 
-<!-- Q7 -->
-<div class="qa-card" data-tags="challenge" data-keywords="ICP uneven shielding effect R&D 不均匀 遮蔽效应 研发">
+<div class="qa-card" data-tags="challenge" data-keywords="ICP uneven shielding effect R&D 不均匀 遮蔽效应 研发 合成控制">
   <div class="qa-q" onclick="toggleCard(this)">
     <div class="q-icon challenge">!</div>
-    <div class="q-text">You said ICP doesn't push investment equally. Can you explain the "shielding effect"?</div>
+    <div class="q-text">
+      <span class="lang-en">You said ICP doesn't push investment equally. Can you explain the "shielding effect"?</span>
+      <span class="lang-zh">你们说 ICP 对投资的推动不均匀，请解释「遮蔽效应」。</span>
+    </div>
     <div class="q-arrow">›</div>
   </div>
   <div class="qa-tags">
@@ -224,22 +330,35 @@
     <span class="qa-tag src">Qin 2023</span>
   </div>
   <div class="qa-a">
-    <div class="point"><div class="point-num">1</div><div class="point-text">Qin (2023) tested ICP's channels using synthetic control method.</div></div>
-    <div class="point"><div class="point-num">2</div><div class="point-text"><span class="highlight">Energy intensity</span> = positive mediator: energy-heavy projects respond well to carbon cost signals.</div></div>
-    <div class="point"><div class="point-num">3</div><div class="point-text"><span class="highlight">R&D spending</span> = shielding effect: R&D absorbs the pressure and "blocks" the signal from reaching other investment types.</div></div>
-    <div class="point"><div class="point-num">4</div><div class="point-text">Implication: shadow price enters the budget, but <span class="highlight">internal distribution is uneven</span> — not all departments benefit equally.</div></div>
-    <span class="killer"><strong>Key sentence:</strong> "ICP opens the door, but R&D acts like a sponge — it absorbs the carbon cost pressure before it reaches other investment channels."</span>
+    <div class="point"><div class="point-num">1</div><div class="point-text">
+      <span class="lang-en">Qin (2023) tested ICP's channels using synthetic control method.</span>
+      <span class="lang-zh">Qin（2023）用合成控制等方法检验 ICP 传导渠道。</span>
+    </div></div>
+    <div class="point"><div class="point-num">2</div><div class="point-text">
+      <span class="lang-en"><span class="highlight">Energy intensity</span> = positive mediator: energy-heavy projects respond well to carbon cost signals.</span>
+      <span class="lang-zh"><span class="highlight">能源强度</span>为正中介：高耗能项目对碳成本信号反应更明显。</span>
+    </div></div>
+    <div class="point"><div class="point-num">3</div><div class="point-text">
+      <span class="lang-en"><span class="highlight">R&amp;D spending</span> = shielding effect: R&amp;D absorbs the pressure and "blocks" the signal from reaching other investment types.</span>
+      <span class="lang-zh"><span class="highlight">研发支出</span>呈遮蔽效应：研发「吸收」压力，阻碍信号传导至其他投资类型。</span>
+    </div></div>
+    <div class="point"><div class="point-num">4</div><div class="point-text">
+      <span class="lang-en">Implication: shadow price enters the budget, but <span class="highlight">internal distribution is uneven</span> — not all departments benefit equally.</span>
+      <span class="lang-zh">含义：影子价格进预算，但<span class="highlight">内部分配不均</span>——并非各部门同等受益。</span>
+    </div></div>
+    <span class="killer"><span class="lang-en"><strong>Key sentence:</strong> "ICP opens the door, but R&amp;D acts like a sponge — it absorbs the carbon cost pressure before it reaches other investment channels."</span><span class="lang-zh"><strong>金句：</strong>「ICP 开了门，但研发像海绵——在信号到达其他投资渠道前先吸走碳成本压力。」</span></span>
   </div>
 </div>
 
-<!-- ============ SECTION: 比较分析 ============ -->
-<div class="section-label">比较与延伸类</div>
+<div class="section-label"><span class="sec-en">Comparison &amp; extension</span><span class="sec-zh">比较与延伸类</span></div>
 
-<!-- Q8 -->
 <div class="qa-card" data-tags="compare" data-keywords="EU ETS China Canada compare 欧盟 中国 加拿大 比较 碳市场">
   <div class="qa-q" onclick="toggleCard(this)">
     <div class="q-icon compare">≈</div>
-    <div class="q-text">How does Canada's approach compare with EU ETS and China's carbon market?</div>
+    <div class="q-text">
+      <span class="lang-en">How does Canada's approach compare with EU ETS and China's carbon market?</span>
+      <span class="lang-zh">加拿大模式与欧盟 ETS、中国碳市场相比如何？</span>
+    </div>
     <div class="q-arrow">›</div>
   </div>
   <div class="qa-tags">
@@ -248,19 +367,33 @@
     <span class="qa-tag src">World Bank 2025</span>
   </div>
   <div class="qa-a">
-    <div class="point"><div class="point-num">1</div><div class="point-text"><span class="highlight">Canada</span>: hybrid model — federal carbon tax (consumer) + baseline-and-credit (industry) + provincial flexibility.</div></div>
-    <div class="point"><div class="point-num">2</div><div class="point-text"><span class="highlight">EU ETS</span>: cap-and-trade, market-determined price. Reached <span class="data">€90+/ton</span> early 2026, then fell to €60-70 range. Most mature system globally.</div></div>
-    <div class="point"><div class="point-num">3</div><div class="point-text"><span class="highlight">China</span>: intensity-based design linked to output — better suited for a growing economy. Price is lower but coverage is expanding.</div></div>
-    <div class="point"><div class="point-num">4</div><div class="point-text">Together, ETS + carbon tax cover about <span class="data">28% of global GHG emissions</span>.</div></div>
-    <span class="killer"><strong>Key sentence:</strong> "Canada chose price certainty (tax), EU chose quantity certainty (cap), China chose flexibility (intensity-based). Different economies, different designs — but the goal is the same: redirect capital."</span>
+    <div class="point"><div class="point-num">1</div><div class="point-text">
+      <span class="lang-en"><span class="highlight">Canada</span>: hybrid model — federal carbon tax (consumer) + baseline-and-credit (industry) + provincial flexibility.</span>
+      <span class="lang-zh"><span class="highlight">加拿大</span>：混合模式——联邦碳税（消费端）+ 基准线—信用（产业）+ 省级灵活安排。</span>
+    </div></div>
+    <div class="point"><div class="point-num">2</div><div class="point-text">
+      <span class="lang-en"><span class="highlight">EU ETS</span>: cap-and-trade, market-determined price. Reached <span class="data">€90+/ton</span> early 2026, then fell to €60-70 range. Most mature system globally.</span>
+      <span class="lang-zh"><span class="highlight">欧盟 ETS</span>：总量交易、价格由市场形成；2026 年初曾达 <span class="data">90+ 欧元/吨</span>后回落至约 60–70 区间，体系最成熟。</span>
+    </div></div>
+    <div class="point"><div class="point-num">3</div><div class="point-text">
+      <span class="lang-en"><span class="highlight">China</span>: intensity-based design linked to output — better suited for a growing economy. Price is lower but coverage is expanding.</span>
+      <span class="lang-zh"><span class="highlight">中国</span>：强度型设计与产出挂钩——更适合增长型经济体；价偏低但覆盖在扩。</span>
+    </div></div>
+    <div class="point"><div class="point-num">4</div><div class="point-text">
+      <span class="lang-en">Together, ETS + carbon tax cover about <span class="data">28% of global GHG emissions</span>.</span>
+      <span class="lang-zh">ETS 与碳税合计覆盖约全球 <span class="data">28%</span> 温室气体排放。</span>
+    </div></div>
+    <span class="killer"><span class="lang-en"><strong>Key sentence:</strong> "Canada chose price certainty (tax), EU chose quantity certainty (cap), China chose flexibility (intensity-based). Different economies, different designs — but the goal is the same: redirect capital."</span><span class="lang-zh"><strong>金句：</strong>「加拿大量价确定、欧盟量确定、中国重灵活——国情不同设计不同，目标都是引导资本。」</span></span>
   </div>
 </div>
 
-<!-- Q9 -->
-<div class="qa-card" data-tags="compare" data-keywords="California CCUS IRA USA sector 加州 美国 行业 难减排">
+<div class="qa-card" data-tags="compare" data-keywords="California CCUS IRA USA sector 加州 美国 行业 难减排 证据">
   <div class="qa-q" onclick="toggleCard(this)">
     <div class="q-icon compare">≈</div>
-    <div class="q-text">Can you give sector-level evidence that carbon pricing actually works?</div>
+    <div class="q-text">
+      <span class="lang-en">Can you give sector-level evidence that carbon pricing actually works?</span>
+      <span class="lang-zh">能否给出行业层面证据，说明碳定价确实起作用？</span>
+    </div>
     <div class="q-arrow">›</div>
   </div>
   <div class="qa-tags">
@@ -270,18 +403,29 @@
     <span class="qa-tag src">Dilek 2026 / Bistline 2023 / IEA 2023</span>
   </div>
   <div class="qa-a">
-    <div class="point"><div class="point-num">1</div><div class="point-text"><span class="highlight">California</span> (Dilek 2026): when carbon pricing + electricity market rules coexist → renewable capacity <span class="data">+148.9 MW/year</span> at county level.</div></div>
-    <div class="point"><div class="point-num">2</div><div class="point-text"><span class="highlight">Hard-to-abate industries</span> (IEA 2023, 2024): CCUS scaling needs carbon price <span class="highlight">combined with</span> subsidies, long-term contracts, standards.</div></div>
-    <div class="point"><div class="point-num">3</div><div class="point-text"><span class="highlight">US IRA</span> (Bistline 2023): capital allocation driven by <span class="highlight">multiple factors</span> — tax credits, electricity prices, interest rates — not carbon price alone.</div></div>
-    <span class="killer"><strong>Key sentence:</strong> "Carbon pricing works — but it works best when supported by complementary tools. Alone, it's necessary but not sufficient."</span>
+    <div class="point"><div class="point-num">1</div><div class="point-text">
+      <span class="lang-en"><span class="highlight">California</span> (Dilek 2026): when carbon pricing + electricity market rules coexist → renewable capacity <span class="data">+148.9 MW/year</span> at county level.</span>
+      <span class="lang-zh"><span class="highlight">加州</span>（Dilek 2026）：碳定价与电力市场规则并存时 → 县级可再生装机约 <span class="data">+148.9 MW/年</span>。</span>
+    </div></div>
+    <div class="point"><div class="point-num">2</div><div class="point-text">
+      <span class="lang-en"><span class="highlight">Hard-to-abate industries</span> (IEA 2023, 2024): CCUS scaling needs carbon price <span class="highlight">combined with</span> subsidies, long-term contracts, standards.</span>
+      <span class="lang-zh"><span class="highlight">难减排行业</span>（IEA）：CCUS 规模化需碳价<span class="highlight">配合</span>补贴、长期合同、标准等。</span>
+    </div></div>
+    <div class="point"><div class="point-num">3</div><div class="point-text">
+      <span class="lang-en"><span class="highlight">US IRA</span> (Bistline 2023): capital allocation driven by <span class="highlight">multiple factors</span> — tax credits, electricity prices, interest rates — not carbon price alone.</span>
+      <span class="lang-zh"><span class="highlight">美国 IRA</span>（Bistline 2023）：资本配置由<span class="highlight">多重因素</span>驱动——税收抵免、电价、利率等，非碳价单打独斗。</span>
+    </div></div>
+    <span class="killer"><span class="lang-en"><strong>Key sentence:</strong> "Carbon pricing works — but it works best when supported by complementary tools. Alone, it's necessary but not sufficient."</span><span class="lang-zh"><strong>金句：</strong>「碳定价有用，但有配套工具时更有效；单靠它必要但不充分。」</span></span>
   </div>
 </div>
 
-<!-- Q10 -->
 <div class="qa-card" data-tags="compare" data-keywords="BP Shell ICP example 企业案例 壳牌 英国石油">
   <div class="qa-q" onclick="toggleCard(this)">
     <div class="q-icon compare">≈</div>
-    <div class="q-text">Can you give real company examples of how ICP is used?</div>
+    <div class="q-text">
+      <span class="lang-en">Can you give real company examples of how ICP is used?</span>
+      <span class="lang-zh">能否举真实企业例子说明 ICP 如何用？</span>
+    </div>
     <div class="q-arrow">›</div>
   </div>
   <div class="qa-tags">
@@ -290,22 +434,35 @@
     <span class="qa-tag src">C2ES 2017 / AlliedOffsets 2025</span>
   </div>
   <div class="qa-a">
-    <div class="point"><div class="point-num">1</div><div class="point-text"><span class="highlight">BP</span>: shadow price of <span class="data">$40/ton</span> for large new projects in industrialized countries.</div></div>
-    <div class="point"><div class="point-num">2</div><div class="point-text"><span class="highlight">Shell</span>: $40/ton ICP for all investment projects since 2000. Both target <span class="data">$100/ton by 2030</span>.</div></div>
-    <div class="point"><div class="point-num">3</div><div class="point-text">Shell is the <span class="highlight">largest buyer</span> in the voluntary carbon market — cancelled ~<span class="data">14.5 million</span> credits in 2024.</div></div>
-    <div class="point"><div class="point-num">4</div><div class="point-text">This shows ICP is not just theoretical — it's already shaping real capital decisions in major energy companies.</div></div>
-    <span class="killer"><strong>Key sentence:</strong> "When Shell puts $40 per ton into every project approval, that's not a policy — that's a management decision that moves billions."</span>
+    <div class="point"><div class="point-num">1</div><div class="point-text">
+      <span class="lang-en"><span class="highlight">BP</span>: shadow price of <span class="data">$40/ton</span> for large new projects in industrialized countries.</span>
+      <span class="lang-zh"><span class="highlight">BP</span>：对发达国家大型新项目用约 <span class="data">40 美元/吨</span>影子价格。</span>
+    </div></div>
+    <div class="point"><div class="point-num">2</div><div class="point-text">
+      <span class="lang-en"><span class="highlight">Shell</span>: $40/ton ICP for all investment projects since 2000. Both target <span class="data">$100/ton by 2030</span>.</span>
+      <span class="lang-zh"><span class="highlight">壳牌</span>：2000 年起对所有投资项目用 40 美元/吨 ICP；双方目标约 <span class="data">2030 年 100 美元/吨</span>。</span>
+    </div></div>
+    <div class="point"><div class="point-num">3</div><div class="point-text">
+      <span class="lang-en">Shell is the <span class="highlight">largest buyer</span> in the voluntary carbon market — cancelled ~<span class="data">14.5 million</span> credits in 2024.</span>
+      <span class="lang-zh">壳牌为自愿碳市场<span class="highlight">最大买方</span>之一——2024 年注销约 <span class="data">1450 万</span>吨信用。</span>
+    </div></div>
+    <div class="point"><div class="point-num">4</div><div class="point-text">
+      <span class="lang-en">This shows ICP is not just theoretical — it's already shaping real capital decisions in major energy companies.</span>
+      <span class="lang-zh">说明 ICP 非纸面工具——已在大型能源公司影响真实资本决策。</span>
+    </div></div>
+    <span class="killer"><span class="lang-en"><strong>Key sentence:</strong> "When Shell puts $40 per ton into every project approval, that's not a policy — that's a management decision that moves billions."</span><span class="lang-zh"><strong>金句：</strong>「壳牌在每个项目审批里放进 40 美元/吨——那是管理决策，能动到数十亿级资金。」</span></span>
   </div>
 </div>
 
-<!-- ============ SECTION: 政策建议 ============ -->
-<div class="section-label">政策建议类</div>
+<div class="section-label"><span class="sec-en">Policy recommendations</span><span class="sec-zh">政策建议类</span></div>
 
-<!-- Q11 -->
-<div class="qa-card" data-tags="policy" data-keywords="recommendation suggestion how to fix 建议 怎么改 政策建议">
+<div class="qa-card" data-tags="policy" data-keywords="recommendation suggestion how to fix 建议 五条 政策">
   <div class="qa-q" onclick="toggleCard(this)">
     <div class="q-icon policy">R</div>
-    <div class="q-text">What are your main policy recommendations?</div>
+    <div class="q-text">
+      <span class="lang-en">What are your main policy recommendations?</span>
+      <span class="lang-zh">你们的主要政策建议有哪些？</span>
+    </div>
     <div class="q-arrow">›</div>
   </div>
   <div class="qa-tags">
@@ -313,20 +470,37 @@
     <span class="qa-tag src">Harrison 2024 / Rabe 2023 / Jaccard 2024</span>
   </div>
   <div class="qa-a">
-    <div class="point"><div class="point-num">1</div><div class="point-text"><span class="highlight">Balance price increase & livelihood</span>: gradual increase, tie revenue to livelihood protection, prioritize low-income groups.</div></div>
-    <div class="point"><div class="point-num">2</div><div class="point-text"><span class="highlight">Regional flexibility</span>: national minimum + provincial autonomy, differentiated support for resource-dependent regions.</div></div>
-    <div class="point"><div class="point-num">3</div><div class="point-text"><span class="highlight">Diversified policy portfolio</span>: don't rely on carbon tax alone. Build "pricing + incentive + transition support" framework.</div></div>
-    <div class="point"><div class="point-num">4</div><div class="point-text"><span class="highlight">Cross-party consensus</span>: legally enshrine carbon pricing to reduce vulnerability to election cycles.</div></div>
-    <div class="point"><div class="point-num">5</div><div class="point-text"><span class="highlight">Revenue transparency</span>: publicly disclose how carbon revenue is collected, allocated, and spent.</div></div>
-    <span class="killer"><strong>Key sentence:</strong> "The answer to the debate is not 'for or against carbon pricing' — it's how to design a system that is both effective and politically sustainable."</span>
+    <div class="point"><div class="point-num">1</div><div class="point-text">
+      <span class="lang-en"><span class="highlight">Balance price increase &amp; livelihood</span>: gradual increase, tie revenue to livelihood protection, prioritize low-income groups.</span>
+      <span class="lang-zh"><span class="highlight">平衡涨价与民生</span>：渐进提价，收入与民生保障挂钩，优先低收入群体。</span>
+    </div></div>
+    <div class="point"><div class="point-num">2</div><div class="point-text">
+      <span class="lang-en"><span class="highlight">Regional flexibility</span>: national minimum + provincial autonomy, differentiated support for resource-dependent regions.</span>
+      <span class="lang-zh"><span class="highlight">区域弹性</span>：国家底线 + 省际自主，对资源型地区差异化支持。</span>
+    </div></div>
+    <div class="point"><div class="point-num">3</div><div class="point-text">
+      <span class="lang-en"><span class="highlight">Diversified policy portfolio</span>: don't rely on carbon tax alone. Build "pricing + incentive + transition support" framework.</span>
+      <span class="lang-zh"><span class="highlight">政策组合</span>：勿单靠碳税；构建「定价 + 激励 + 转型支持」框架。</span>
+    </div></div>
+    <div class="point"><div class="point-num">4</div><div class="point-text">
+      <span class="lang-en"><span class="highlight">Cross-party consensus</span>: legally enshrine carbon pricing to reduce vulnerability to election cycles.</span>
+      <span class="lang-zh"><span class="highlight">跨党共识</span>：法律化制度化碳定价，降低选举周期冲击。</span>
+    </div></div>
+    <div class="point"><div class="point-num">5</div><div class="point-text">
+      <span class="lang-en"><span class="highlight">Revenue transparency</span>: publicly disclose how carbon revenue is collected, allocated, and spent.</span>
+      <span class="lang-zh"><span class="highlight">收入透明</span>：公开碳收入的征集、分配与使用。</span>
+    </div></div>
+    <span class="killer"><span class="lang-en"><strong>Key sentence:</strong> "The answer to the debate is not 'for or against carbon pricing' — it's how to design a system that is both effective and politically sustainable."</span><span class="lang-zh"><strong>金句：</strong>「争论不在『要不要碳定价』，而在如何设计既有效又政治可持续的体系。」</span></span>
   </div>
 </div>
 
-<!-- Q12 -->
 <div class="qa-card" data-tags="policy" data-keywords="cross-party consensus legal legislation 跨党共识 立法 制度化">
   <div class="qa-q" onclick="toggleCard(this)">
     <div class="q-icon policy">R</div>
-    <div class="q-text">Is cross-party consensus realistic? How would you actually achieve it?</div>
+    <div class="q-text">
+      <span class="lang-en">Is cross-party consensus realistic? How would you actually achieve it?</span>
+      <span class="lang-zh">跨党共识现实吗？具体怎么做到？</span>
+    </div>
     <div class="q-arrow">›</div>
   </div>
   <div class="qa-tags">
@@ -335,18 +509,29 @@
     <span class="qa-tag src">Rabe 2023</span>
   </div>
   <div class="qa-a">
-    <div class="point"><div class="point-num">1</div><div class="point-text">We acknowledge it's difficult — that's exactly the point. Canada's biggest vulnerability is <span class="highlight">policy depending on which party is in power</span>.</div></div>
-    <div class="point"><div class="point-num">2</div><div class="point-text">Two paths: (a) <span class="highlight">legal entrenchment</span> — write carbon pricing rules into law so they can't be easily reversed; (b) <span class="highlight">inter-party consultation</span> — agree on core principles even if details differ.</div></div>
-    <div class="point"><div class="point-num">3</div><div class="point-text">The 2025 decision to cancel consumer fuel charge by the new PM is a real example of what happens <span class="highlight">without</span> institutional protection.</div></div>
-    <span class="killer"><strong>Key sentence:</strong> "If the carbon price can be cancelled by the next election, it's not a policy — it's a temporary arrangement."</span>
+    <div class="point"><div class="point-num">1</div><div class="point-text">
+      <span class="lang-en">We acknowledge it's difficult — that's exactly the point. Canada's biggest vulnerability is <span class="highlight">policy depending on which party is in power</span>.</span>
+      <span class="lang-zh">承认很难——这正是问题：加拿大最大脆弱性是<span class="highlight">政策随执政党摇摆</span>。</span>
+    </div></div>
+    <div class="point"><div class="point-num">2</div><div class="point-text">
+      <span class="lang-en">Two paths: (a) <span class="highlight">legal entrenchment</span> — write carbon pricing rules into law so they can't be easily reversed; (b) <span class="highlight">inter-party consultation</span> — agree on core principles even if details differ.</span>
+      <span class="lang-zh">两路径：（a）<span class="highlight">法律固化</span>——写入法律防轻易逆转；（b）<span class="highlight">跨党协商</span>——细节可争，原则共识。</span>
+    </div></div>
+    <div class="point"><div class="point-num">3</div><div class="point-text">
+      <span class="lang-en">The 2025 decision to cancel consumer fuel charge by the new PM is a real example of what happens <span class="highlight">without</span> institutional protection.</span>
+      <span class="lang-zh">2025 年新总理取消消费者燃料碳费，是<span class="highlight">缺乏</span>制度保护的实例。</span>
+    </div></div>
+    <span class="killer"><span class="lang-en"><strong>Key sentence:</strong> "If the carbon price can be cancelled by the next election, it's not a policy — it's a temporary arrangement."</span><span class="lang-zh"><strong>金句：</strong>「若碳价可被下次选举一笔勾销，那就不是政策，只是临时安排。」</span></span>
   </div>
 </div>
 
-<!-- Q13 -->
-<div class="qa-card" data-tags="policy challenge" data-keywords="2025 cancel consumer fuel charge new PM 取消 消费者 燃料费 新总理">
+<div class="qa-card" data-tags="policy challenge" data-keywords="2025 cancel consumer fuel charge new PM 取消 消费者 燃料费 失败 OBPS">
   <div class="qa-q" onclick="toggleCard(this)">
     <div class="q-icon challenge">!</div>
-    <div class="q-text">The new PM cancelled the consumer carbon tax in 2025. Does that mean the whole system failed?</div>
+    <div class="q-text">
+      <span class="lang-en">The new PM cancelled the consumer carbon tax in 2025. Does that mean the whole system failed?</span>
+      <span class="lang-zh">2025 年新总理取消消费者碳税，是否等于整个体系失败？</span>
+    </div>
     <div class="q-arrow">›</div>
   </div>
   <div class="qa-tags">
@@ -354,19 +539,33 @@
     <span class="qa-tag kw">System Failure?</span>
   </div>
   <div class="qa-a">
-    <div class="point"><div class="point-num">1</div><div class="point-text">Not entirely — the <span class="highlight">industrial pricing system (OBPS) still exists</span>. What was cancelled was the consumer-side fuel charge.</div></div>
-    <div class="point"><div class="point-num">2</div><div class="point-text">This actually proves our analysis: <span class="highlight">political sustainability is the weakest link</span> in carbon pricing design.</div></div>
-    <div class="point"><div class="point-num">3</div><div class="point-text">The benchmark page update in March 2025 shows policy is shifting, not disappearing — focus moved to industrial emissions.</div></div>
-    <div class="point"><div class="point-num">4</div><div class="point-text">For companies, this creates exactly the kind of <span class="highlight">signal instability</span> we discussed — shadow prices must be reassessed.</div></div>
-    <span class="killer"><strong>Key sentence:</strong> "The system didn't fail — it adapted. But the adaptation itself created uncertainty, which is exactly the problem we analyze."</span>
+    <div class="point"><div class="point-num">1</div><div class="point-text">
+      <span class="lang-en">Not entirely — the <span class="highlight">industrial pricing system (OBPS) still exists</span>. What was cancelled was the consumer-side fuel charge.</span>
+      <span class="lang-zh">并非全部——<span class="highlight">工业侧定价（OBPS）仍在</span>；取消的是消费者燃料费。</span>
+    </div></div>
+    <div class="point"><div class="point-num">2</div><div class="point-text">
+      <span class="lang-en">This actually proves our analysis: <span class="highlight">political sustainability is the weakest link</span> in carbon pricing design.</span>
+      <span class="lang-zh">反而印证我们分析：<span class="highlight">政治可持续性</span>是碳定价设计最薄一环。</span>
+    </div></div>
+    <div class="point"><div class="point-num">3</div><div class="point-text">
+      <span class="lang-en">The benchmark page update in March 2025 shows policy is shifting, not disappearing — focus moved to industrial emissions.</span>
+      <span class="lang-zh">2025 年 3 月基准线页面更新显示政策在调整而非消失——重心转向工业排放。</span>
+    </div></div>
+    <div class="point"><div class="point-num">4</div><div class="point-text">
+      <span class="lang-en">For companies, this creates exactly the kind of <span class="highlight">signal instability</span> we discussed — shadow prices must be reassessed.</span>
+      <span class="lang-zh">对企业而言正是我们讨论的<span class="highlight">信号不稳定</span>——需重估影子价格。</span>
+    </div></div>
+    <span class="killer"><span class="lang-en"><strong>Key sentence:</strong> "The system didn't fail — it adapted. But the adaptation itself created uncertainty, which is exactly the problem we analyze."</span><span class="lang-zh"><strong>金句：</strong>「体系未简单『失败』而是调整；调整本身带来不确定性——正是我们分析的问题。」</span></span>
   </div>
 </div>
 
-<!-- Q14 -->
-<div class="qa-card" data-tags="compare policy" data-keywords="other countries lesson applicable 其他国家 适用性 启示">
+<div class="qa-card" data-tags="compare policy" data-keywords="other countries lesson applicable 其他国家 适用性 黄马甲 法国">
   <div class="qa-q" onclick="toggleCard(this)">
     <div class="q-icon compare">≈</div>
-    <div class="q-text">Are your findings applicable to other countries, or only to Canada?</div>
+    <div class="q-text">
+      <span class="lang-en">Are your findings applicable to other countries, or only to Canada?</span>
+      <span class="lang-zh">结论只适用于加拿大，还是也可推广到其他国家？</span>
+    </div>
     <div class="q-arrow">›</div>
   </div>
   <div class="qa-tags">
@@ -374,16 +573,44 @@
     <span class="qa-tag kw">Global Context</span>
   </div>
   <div class="qa-a">
-    <div class="point"><div class="point-num">1</div><div class="point-text">The <span class="highlight">specific numbers</span> are Canadian (CAD 80/ton, provincial structure), but the <span class="highlight">mechanisms</span> are universal.</div></div>
-    <div class="point"><div class="point-num">2</div><div class="point-text">The tension between economic efficiency and political acceptability exists <span class="highlight">everywhere</span> carbon pricing is implemented — France's yellow vest movement is another example.</div></div>
-    <div class="point"><div class="point-num">3</div><div class="point-text">Our five policy recommendations (signal stability, regional flexibility, portfolio approach, consensus, transparency) are <span class="highlight">design principles</span>, not Canada-specific fixes.</div></div>
-    <span class="killer"><strong>Key sentence:</strong> "Canada is the case, but the lesson is universal: carbon pricing must be designed for political survival, not just economic efficiency."</span>
+    <div class="point"><div class="point-num">1</div><div class="point-text">
+      <span class="lang-en">The <span class="highlight">specific numbers</span> are Canadian (CAD 80/ton, provincial structure), but the <span class="highlight">mechanisms</span> are universal.</span>
+      <span class="lang-zh"><span class="highlight">具体数字</span>是加拿大的（如 80 加元/吨、省际结构），<span class="highlight">机制</span>具有普遍性。</span>
+    </div></div>
+    <div class="point"><div class="point-num">2</div><div class="point-text">
+      <span class="lang-en">The tension between economic efficiency and political acceptability exists <span class="highlight">everywhere</span> carbon pricing is implemented — France's yellow vest movement is another example.</span>
+      <span class="lang-zh">经济效率与政治可接受性之间的张力<span class="highlight">普遍存在</span>——法国黄马甲运动亦是例证。</span>
+    </div></div>
+    <div class="point"><div class="point-num">3</div><div class="point-text">
+      <span class="lang-en">Our five policy recommendations (signal stability, regional flexibility, portfolio approach, consensus, transparency) are <span class="highlight">design principles</span>, not Canada-specific fixes.</span>
+      <span class="lang-zh">五条建议（信号稳定、区域弹性、组合政策、共识、透明）是<span class="highlight">设计原则</span>，非仅加拿大补丁。</span>
+    </div></div>
+    <span class="killer"><span class="lang-en"><strong>Key sentence:</strong> "Canada is the case, but the lesson is universal: carbon pricing must be designed for political survival, not just economic efficiency."</span><span class="lang-zh"><strong>金句：</strong>「加拿大是案例，教训是普遍的：碳定价要为政治生存而设计，不能只做经济效率。」</span></span>
   </div>
 </div>
 
-</div><!-- container -->
+</div>
 
 <script>
+function setLang(mode, btn) {
+  document.body.setAttribute('data-lang', mode);
+  document.querySelectorAll('.lang-bar button').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  try { localStorage.setItem('qa-lang', mode); } catch (e) {}
+}
+
+(function initLang() {
+  try {
+    var s = localStorage.getItem('qa-lang');
+    if (s === 'en' || s === 'zh' || s === 'both') {
+      document.body.setAttribute('data-lang', s);
+      document.querySelectorAll('.lang-bar button').forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-lang') === s);
+      });
+    }
+  } catch (e) {}
+})();
+
 function toggleCard(el) {
   el.closest('.qa-card').classList.toggle('open');
 }
